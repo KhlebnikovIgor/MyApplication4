@@ -2,7 +2,15 @@ package ru.btec.smr.myapplication.model;
 
 
 public class ReposRest {
-    public String name;
+    private String name;
     //public ItemRest owner;
-    public String full_name;
+    private String html_url;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHtml_url() {
+        return html_url;
+    }
 }

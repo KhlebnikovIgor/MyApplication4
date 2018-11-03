@@ -19,11 +19,12 @@ public class GithubUserRecyclerViewAdapter extends RealmRecyclerViewAdapter<User
     ItemListActivity mParentActivity;
     private boolean mTwoPane;
 
-    public void onClickItem(View view, String login, String avatar) {
+    public void onClickItem(View view, String login, String avatar, String html) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putString(ItemDetailFragment.ITEM_LOGIN, login);
             arguments.putString(ItemDetailFragment.ITEM_AVATAR, avatar);
+            arguments.putString(ItemDetailFragment.ITEM_HTML, html);
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);
             mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -34,6 +35,7 @@ public class GithubUserRecyclerViewAdapter extends RealmRecyclerViewAdapter<User
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra(ItemDetailFragment.ITEM_LOGIN, login);
             intent.putExtra(ItemDetailFragment.ITEM_AVATAR, avatar);
+            intent.putExtra(ItemDetailFragment.ITEM_HTML, html);
             context.startActivity(intent);
         }
     }
@@ -63,7 +65,7 @@ public class GithubUserRecyclerViewAdapter extends RealmRecyclerViewAdapter<User
     public void onBindViewHolder(GithubUserHolder holder, int position) {
         holder.bind(getItem(position));
         holder.itemView.setOnClickListener((v) -> {
-            onClickItem(v, getItem(position).getLogin(), getItem(position).getAvatar());
+            onClickItem(v, getItem(position).getLogin(), getItem(position).getAvatar(), getItem(position).getHtml_url());
         });
     }
 

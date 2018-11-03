@@ -1,5 +1,7 @@
 package ru.btec.smr.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,8 +26,7 @@ public class ItemDetailActivity  extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getIntent().getStringExtra(ItemDetailFragment.ITEM_HTML))));
             }
         });
 
@@ -40,6 +41,9 @@ public class ItemDetailActivity  extends AppCompatActivity {
                     getIntent().getStringExtra(ItemDetailFragment.ITEM_LOGIN));
             arguments.putString(ItemDetailFragment.ITEM_AVATAR,
                     getIntent().getStringExtra(ItemDetailFragment.ITEM_AVATAR));
+            arguments.putString(ItemDetailFragment.ITEM_HTML,
+                    getIntent().getStringExtra(ItemDetailFragment.ITEM_HTML));
+
 
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);

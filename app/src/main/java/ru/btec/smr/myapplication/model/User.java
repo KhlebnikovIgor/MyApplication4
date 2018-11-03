@@ -15,6 +15,7 @@ public class User extends RealmObject {
     private int id;
     private String login;
     private String avatar_url;
+    private String html_url;
 
     public int getId() {
         return id;
@@ -28,6 +29,10 @@ public class User extends RealmObject {
         return avatar_url;
     }
 
+    public String getHtml_url() {
+        return html_url;
+    }
+
     static void create(Realm realm, List<UserRest> itemRests) {
         UserParent parent = realm.where(UserParent.class).findFirst();
         RealmList<User> items = parent.getItemList();
@@ -35,6 +40,7 @@ public class User extends RealmObject {
             User counter = realm.createObject(User.class, curItem.getId());
             counter.avatar_url = curItem.getAvatar();
             counter.login = curItem.getLogin();
+            counter.html_url = curItem.getHtml_url();
             items.add(counter);
         }
     }

@@ -7,4 +7,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
+    android:autoLink="web"
+    android:linksClickable="true"
+    android:textColorLink="@android:color/holo_blue_dark"
     tools:context=".ItemDetailFragment" />
