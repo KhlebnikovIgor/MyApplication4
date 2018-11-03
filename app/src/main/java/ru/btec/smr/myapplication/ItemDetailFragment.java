@@ -61,13 +61,15 @@ public class ItemDetailFragment extends MvpAppCompatFragment implements ReposVie
 
     @Override
     public void setReposList(List<ReposRest> reposList) {
-        String repos="REPOSITORIES";
+        String repos = "REPOSITORIES";
 
-        for (ReposRest item: reposList) {
+        for (ReposRest item : reposList) {
             repos = repos + "\n" + item.getHtml_url();
         }
-        ((TextView) getActivity().findViewById(R.id.item_detail))
-                .setText(repos);
+        TextView textView = getActivity().findViewById(R.id.item_detail);
+        if (textView != null) {
+            textView.setText(repos);
+        }
     }
 
     @Override
